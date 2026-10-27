@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MEDHAMANTRA Contacts</title>
+<style>
+:root{color-scheme:dark;--bg:#050605;--panel:#080a08;--line:#292d2a;--green:#16a34a;--green-dark:#14532d;--mint:#dcfce7;--text:#f1f3f1;--muted:#b8beb9}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+.app{max-width:1120px;margin:18px auto;padding:0 16px 35px}
+.top{border:1px solid var(--line);border-radius:21px;background:#050605;overflow:hidden}
+.header{padding:15px;display:flex;align-items:center;gap:14px}
+.logo{width:66px;height:66px;border-radius:18px;background:#14532d;display:grid;place-items:center;flex-shrink:0}
+.logo svg{width:33px;height:33px;stroke:#f0fff4}
+.brand{min-width:0;flex:1}.brand h1{font-size:21px;margin:0 0 5px;font-weight:750;letter-spacing:-.4px}.brand p{margin:0;color:#d0d5d1;font-size:16px}
+.online{color:#00d65a;background:#062013;border-radius:20px;padding:5px 11px;font-size:14px;white-space:nowrap}
+.sync{padding:4px 17px 20px;color:#c4cbc6;display:flex;gap:11px;align-items:center;font-size:16px;border-bottom:1px solid #171a18}
+.sync svg{width:16px;height:16px;stroke:#00d65a;flex-shrink:0}
+.tools{display:flex;gap:10px;padding:14px 16px 4px;flex-wrap:wrap}
+input,select{background:#101310;color:#f3f5f3;border:1px solid #333a34;border-radius:10px;padding:11px 12px;font-size:14px;min-width:0}
+#search{flex:1;min-width:190px}#districtFilter{min-width:160px}
+button{cursor:pointer;font:inherit}
+.list{padding:0 15px 15px}
+.contact{border-bottom:1px solid #171a18;padding:17px 0;display:flex;align-items:center;gap:15px}
+.contact:last-child{border-bottom:0}
+.profile{width:55px;height:55px;border-radius:50%;background:#eef5ef;border:0;display:grid;place-items:center;flex-shrink:0}
+.profile svg{width:26px;height:26px;stroke:#14532d;fill:none;stroke-width:2}
+.identity{flex:1;min-width:0;cursor:pointer}
+.identity h2{margin:0 0 6px;font-size:18px;font-weight:750;overflow-wrap:anywhere}
+.identity p{margin:0;color:#bfc6c0;font-size:16px;overflow-wrap:anywhere}
+.buttons{display:flex;gap:14px;align-items:center}
+.action{width:54px;height:54px;border:0;border-radius:17px;background:#e2f7e8;color:#07883a;display:grid;place-items:center;text-decoration:none;flex-shrink:0}
+.action svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2}
+.details{margin:12px 0 3px 70px;border:1px solid #2a332c;border-radius:13px;background:#0d100d;padding:13px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.field{min-width:0}.field span{display:block;color:#8e9a90;font-size:11px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}.field strong{font-size:14px;font-weight:500;overflow-wrap:anywhere;white-space:pre-wrap}
+.hidden{display:none!important}
+.empty{padding:28px 12px;color:#aeb8b0;text-align:center}
+.footer{color:#858f87;font-size:12px;line-height:1.5;padding:0 16px 17px}
+#status{color:#8fa196;font-size:12px;padding:0 16px 14px}
+@media(max-width:540px){.app{padding:0 9px;margin:9px auto}.header{gap:11px;padding:12px}.logo{width:53px;height:53px;border-radius:15px}.brand h1{font-size:17px}.brand p{font-size:13px}.online{font-size:12px;padding:4px 8px}.sync{font-size:14px;padding:4px 13px 16px}.tools{padding:12px 11px 4px}.list{padding:0 12px 10px}.contact{gap:10px;padding:15px 0}.profile{width:46px;height:46px}.identity h2{font-size:16px}.identity p{font-size:13px}.buttons{gap:7px}.action{width:43px;height:43px;border-radius:13px}.details{margin-left:0;grid-template-columns:1fr 1fr}.footer{padding-left:12px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <section class="top">
+    <header class="header">
+      <div class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="m2 8 10-5 10 5-10 5L2 8Z"/><path d="M6 10v5c3 3 9 3 12 0v-5M22 8v6"/></svg></div>
+      <div class="brand"><h1>MEDHAMANTRA Contacts</h1><p>Student &amp; Contact Manager</p></div>
+      <span class="online">Online</span>
+    </header>
+    <div class="sync"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M6 9a7 7 0 0 1 12-2l2 2M4 13l2 2a7 7 0 0 0 12-2"/></svg><span id="syncText">GitHub JSON থেকে সর্বশেষ কন্টাক্ট লোড</span></div>
+    <div class="tools">
+      <input id="jsonUrl" type="url" value="https://raw.githubusercontent.com/medhamantra/medhamantra-candidates/refs/heads/main/candidates.json" placeholder="Paste GitHub raw JSON URL here">
+      <button id="loadBtn" class="action" style="width:auto;padding:0 15px;border-radius:10px;font-size:13px;font-weight:700" type="button">Refresh</button>
+    </div>
+    <div class="tools">
+      <input id="search" type="search" placeholder="Search name, school, code, phone, subject...">
+      <select id="districtFilter"><option value="">All districts</option></select>
+    </div>
+    <div id="status" aria-live="polite">GitHub JSON URL দিন, তারপর Refresh চাপুন।</div>
+    <div class="list" id="contactList"><div class="empty">কোনও ডেটা লোড হয়নি। GitHub-এর raw JSON URL যোগ করুন।</div></div>
+    <div class="footer">প্রোফাইল আইকনে ক্লিক করলে সম্পূর্ণ ডিটেইলস দেখা যাবে। Call ও WhatsApp বাটন সরাসরি সংশ্লিষ্ট অ্যাপ খুলবে।</div>
+  </section>
+</div>
+<script>
+/*
+  1) GitHub-এ candidates.json আপলোড করুন।
+  2) GitHub ফাইলে Raw চাপুন এবং Raw URL কপি করুন।
+  3) উপরের URL বক্সে পেস্ট করে Refresh চাপুন।
+  Expected JSON: array of objects using the Excel column headings.
+*/
+const $ = id => document.getElementById(id);
+let candidates = [];
+const KEYS = [
+  ["DISTRICT","District"],["CODE","Code"],["SCHOOL NAME","School Name"],
+  ["CANDIDATE NAME","Candidate Name"],["GENDER","Gender"],
+  ["CONTACT NO.","Contact No."],["GUARDIAN NAME","Guardian Name"],["SUBJECTS","Subjects"]
+];
+function esc(value){return String(value ?? "").trim()}
+function phoneDigits(value){return esc(value).replace(/\D/g,"")}
+function displayName(c){return esc(c["CANDIDATE NAME"]) || "Unnamed Candidate"}
+function makeSvg(type){
+ if(type==="user")return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2"/></svg>';
+ if(type==="phone")return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 11.2 19a19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-.6 1.9L7.1 10.5a16 16 0 0 0 6 6l1.9-1.9a2 2 0 0 1 1.9-.6l3 .5a2 2 0 0 1 2.1 2.4Z"/></svg>';
+ return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8A8.5 8.5 0 0 1 8.7 3.9a8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/></svg>';
+}
+function render(){
+ const q=$("search").value.trim().toLowerCase(), district=$("districtFilter").value;
+ const list=$("contactList");list.innerHTML="";
+ const filtered=candidates.filter(c=>{
+   const searchable=KEYS.map(([key])=>esc(c[key])).join(" ").toLowerCase();
+   return (!q||searchable.includes(q))&&(!district||esc(c["DISTRICT"])===district);
+ });
+ if(!filtered.length){list.innerHTML='<div class="empty">মিল পাওয়া যায়নি। Search বা District filter পরিবর্তন করুন।</div>';return}
+ filtered.forEach((c,index)=>{
+   const phone=phoneDigits(c["CONTACT NO."]);
+   const safePhone=phone.length>=10&&phone.length<=15?phone:"";
+   const item=document.createElement("article");item.className="contact-wrap";
+   const row=document.createElement("div");row.className="contact";
+   const profile=document.createElement("button");profile.className="profile";profile.type="button";profile.setAttribute("aria-label","View full details");profile.innerHTML=makeSvg("user");
+   const identity=document.createElement("div");identity.className="identity";identity.tabIndex=0;identity.setAttribute("role","button");identity.setAttribute("aria-expanded","false");
+   const name=document.createElement("h2");name.textContent=displayName(c);
+   const sub=document.createElement("p");sub.textContent=esc(c["CONTACT NO."]) || "No contact number";
+   identity.append(name,sub);
+   const buttons=document.createElement("div");buttons.className="buttons";
+   const call=document.createElement("a");call.className="action";call.innerHTML=makeSvg("phone");call.setAttribute("aria-label","Call candidate");call.href=safePhone?"tel:"+safePhone:"#";
+   if(!safePhone){call.style.opacity=".35";call.addEventListener("click",e=>e.preventDefault());}
+   const wa=document.createElement("a");wa.className="action";wa.innerHTML=makeSvg("chat");wa.setAttribute("aria-label","Open WhatsApp chat");wa.href=safePhone?"https://wa.me/"+safePhone:"#";wa.target="_blank";wa.rel="noopener";
+   if(!safePhone){wa.style.opacity=".35";wa.addEventListener("click",e=>e.preventDefault());}
+   buttons.append(call,wa);row.append(profile,identity,buttons);
+   const details=document.createElement("div");details.className="details hidden";
+   KEYS.forEach(([key,label])=>{
+     const field=document.createElement("div");field.className="field";
+     const span=document.createElement("span");span.textContent=label;
+     const strong=document.createElement("strong");strong.textContent=esc(c[key])||"—";
+     field.append(span,strong);details.append(field);
+   });
+   const toggle=()=>{details.classList.toggle("hidden");identity.setAttribute("aria-expanded",String(!details.classList.contains("hidden")));};
+   profile.addEventListener("click",toggle);identity.addEventListener("click",toggle);
+   identity.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle();}});
+   item.append(row,details);list.append(item);
+ });
+}
+function fillDistricts(){
+ const current=$("districtFilter").value;
+ const districts=[...new Set(candidates.map(c=>esc(c["DISTRICT"])).filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+ $("districtFilter").innerHTML='<option value="">All districts</option>';
+ districts.forEach(d=>$("districtFilter").add(new Option(d,d)));
+ if(districts.includes(current))$("districtFilter").value=current;
+}
+async function loadJson(){
+ const url=$("jsonUrl").value.trim();
+ if(!url){$("status").textContent="প্রথমে GitHub-এর Raw JSON URL পেস্ট করুন।";return}
+ $("status").textContent="ডেটা লোড হচ্ছে…";
+ try{
+   const response=await fetch(url,{cache:"no-store"});
+   if(!response.ok)throw new Error("HTTP "+response.status+" — URL বা ফাইলের access চেক করুন");
+   const data=await response.json();
+   if(!Array.isArray(data))throw new Error("JSON-এর root অবশ্যই array [] হতে হবে");
+   candidates=data;
+   fillDistricts();render();
+   $("status").textContent=`সফলভাবে ${candidates.length}টি রেকর্ড লোড হয়েছে।`;
+   $("syncText").textContent="GitHub JSON থেকে সর্বশেষ কন্টাক্ট লোড";
+ }catch(err){
+   $("status").textContent="লোড করা যায়নি: "+err.message+". GitHub-এর Raw URL ব্যবহার করুন এবং JSON public কিনা নিশ্চিত করুন।";
+ }
+}
+$("loadBtn").addEventListener("click",loadJson);
+$("search").addEventListener("input",render);
+$("districtFilter").addEventListener("change",render);
+$("jsonUrl").addEventListener("keydown",e=>{if(e.key==="Enter")loadJson()});
+// Optional: set your public GitHub raw URL below to load automatically on app open.
+// const DEFAULT_JSON_URL = "https://raw.githubusercontent.com/USERNAME/REPOSITORY/BRANCH/candidates.json";
+const DEFAULT_JSON_URL = "https://raw.githubusercontent.com/medhamantra/medhamantra-candidates/refs/heads/main/candidates.json";
+if(DEFAULT_JSON_URL){$("jsonUrl").value=DEFAULT_JSON_URL;loadJson();}
+</script>
+</body>
+</html>
