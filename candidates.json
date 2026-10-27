@@ -29,4 +29,64 @@
     "GUARDIAN NAME": "ABCD",
     "SUBJECTS": "BNGA"
   },
+  {
+    "DISTRICT": "Purba Burdwan",
+    "CODE": "00000",
+    "SCHOOL NAME": "MEDHAMANTRA 2",
+    "CANDIDATE NAME": "KING 2",
+    "GENDER": "Male",
+    "CONTACT NO.": "7029902199",
+    "GUARDIAN NAME": "ABCD",
+    "SUBJECTS": "BNGA"
+  },
+  {
+    "DISTRICT": "Purba Burdwan",
+    "CODE": "00000",
+    "SCHOOL NAME": "MEDHAMANTRA 2",
+    "CANDIDATE NAME": "DIPAN 2",
+    "GENDER": "Male",
+    "CONTACT NO.": "6295648615",
+    "GUARDIAN NAME": "ABCD",
+    "SUBJECTS": "BNGA"
+  },
+  {
+    "DISTRICT": "Purba Burdwan",
+    "CODE": "00000",
+    "SCHOOL NAME": "MEDHAMANTRA 2",
+    "CANDIDATE NAME": "DHRITI DIPA MALLIK 2",
+    "GENDER": "Female",
+    "CONTACT NO.": "9002926224",
+    "GUARDIAN NAME": "ABCD",
+    "SUBJECTS": "BNGA"
+  },
+  {
+    "DISTRICT": "Purba Burdwan",
+    "CODE": "00000",
+    "SCHOOL NAME": "MEDHAMANTRA 3",
+    "CANDIDATE NAME": "KING 3",
+    "GENDER": "Male",
+    "CONTACT NO.": "7029902199",
+    "GUARDIAN NAME": "ABCD",
+    "SUBJECTS": "BNGA"
+  },
+  {
+    "DISTRICT": "Purba Burdwan",
+    "CODE": "00000",
+    "SCHOOL NAME": "MEDHAMANTRA 3",
+    "CANDIDATE NAME": "DIPAN 3",
+    "GENDER": "Male",
+    "CONTACT NO.": "6295648615",
+    "GUARDIAN NAME": "ABCD",
+    "SUBJECTS": "BNGA"
+  },
+  {
+    "DISTRICT": "Purba Burdwan",
+    "CODE": "00000",
+    "SCHOOL NAME": "MEDHAMANTRA 3",
+    "CANDIDATE NAME": "DHRITI DIPA MALLIK 3",
+    "GENDER": "Female",
+    "CONTACT NO.": "9002926224",
+    "GUARDIAN NAME": "ABCD",
+    "SUBJECTS": "BNGA"
+  },
 ]
